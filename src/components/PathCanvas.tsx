@@ -58,11 +58,12 @@ export class PathCanvas extends Component {
                     document.querySelector(`[column='${node.column}'][row='${node.row}']`)?.classList.add('animate-node-path');
                 }, index * 30);
             })
-            console.log(nodes);
-            this.setState({
-                active: false,
-                isVisualized: true
-            })
+            setTimeout(() => {
+                this.setState({
+                    active: false,
+                    isVisualized: true
+                })
+            }, path.length * 30);
         }, nodes.length * 5);
     }
     
@@ -316,7 +317,7 @@ export class PathCanvas extends Component {
                 setObsticles={(value) => this.setObsticles(value)}
                 creatingObsticles={this.state.creatingObsticles}
             />
-            <div className="path-canvas flex column align-center" onMouseUp={this.handleMouseUp}>
+            <div className="path-canvas flex column align-center" onMouseUp={this.handleMouseUp} onMouseLeave={this.handleMouseUp}>
                 {grid.map((row: any, rowIndex: number) => {
                     return(
                         <div className="row" key={rowIndex}>
