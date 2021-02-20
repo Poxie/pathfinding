@@ -3,6 +3,7 @@
     background-color: #20232a;
     color: #fff;
     width: 100%;
+    font-weight: 500;
 }
 .navbar button {
     background-color: transparent;
@@ -15,8 +16,9 @@
     outline: none;
     font-weight: 500;
     cursor: pointer;
-    width: 169px;
+    width: 178px;
     transition: background-color .4s;
+    margin: 0 25px;
 }
 .navbar button:hover {
     background-color: #438effa9;
@@ -24,10 +26,42 @@
 .navbar button.disabled {
     background-color: #ff2300;
 }
+.side-button {
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity .2s;
+    position: relative;
+}
+.side-button:hover {
+    opacity: .7;
+}
+
+.obsticles {
+    position: relative;
+}
+.obsticles-popup {
+    position: absolute;
+    background-color: #20232a;
+    box-shadow: rgb(0 0 0 / 30%) 1px 1px 6px 2px;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+    border-radius: 3px;
+    padding: 6px;
+}
+.obsticles-option {
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.obsticles-option:hover {
+    background-color: #438effa9;
+}
+
 .navbar-bottom {
     padding: 20px 0;
 }
-
 .flex {
     display: flex;
 }
