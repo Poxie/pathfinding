@@ -24,7 +24,7 @@ export const Navbar: React.FC<Props> = ({onClick, disabled, clear, setObstacles,
 
     let text;
     if(creatingObstacles) {
-        text = 'Creating obsticles...';
+        text = 'Creating obstacles...';
     } else if(disabled) {
         text = 'Visualizing...';
     } else {
