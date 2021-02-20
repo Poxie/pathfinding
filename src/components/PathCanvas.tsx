@@ -25,11 +25,12 @@ export class PathCanvas extends Component {
         draggingStart: false,
         draggingFinish: false,
         startNodeRow: 16,
-        startNodeColumn: 10,
+        startNodeColumn: 20,
         finishNodeRow: 16,
-        finishNodeColumn: 65,
+        finishNodeColumn: 55,
         isVisualized: false,
-        active: false
+        active: false,
+        creatingObsticles: false
     }
 
     componentDidMount = () => {
@@ -267,6 +268,43 @@ export class PathCanvas extends Component {
         this.animateNodes(nodes, grid[this.state.finishNodeRow][this.state.finishNodeColumn]);
     }
 
+    clearCanvas = () => {
+        this.removeCurrentStyles();
+        const grid = this.getGrid();
+        this.setState({
+            grid: grid,
+            isVisualized: false
+        })
+    }
+
+    setObsticles = (value: string) => {
+        this.setState({
+            creatingObsticles: true
+        })
+        this.clearCanvas();
+        if(value === 'random') {
+            const walls: Node[] = [];
+            for(let i = 0; i < 800; i++) {
+                const randomRow = Math.floor(Math.random() * ROW_LENGTH);
+                const randomColumn = Math.floor(Math.random() * COLUMN_LENGTH);
+                const node: Node = this.state.grid[randomRow][randomColumn];
+                if(!node.isStart && !node.isFinish) {
+                    walls.push(node);
+                    setTimeout(() => {
+                        document.querySelector(`[column='${node.column}'][row='${node.row}']`)?.classList.add('wall');
+                    }, 5 * i);
+                }
+            }
+            setTimeout(() => {
+                const grid = this.getNewGridWithWalls(this.state.startNodeRow, this.state.startNodeColumn, walls, true);
+                this.setState({
+                    grid,
+                    creatingObsticles: false
+                })
+            }, 5 * 800);
+        }
+    }
+
     render() {
         const { grid } = this.state;
         return(
@@ -274,6 +312,9 @@ export class PathCanvas extends Component {
             <Navbar 
                 onClick={this.visualize}
                 disabled={this.state.active}
+                clear={this.clearCanvas}
+                setObsticles={(value) => this.setObsticles(value)}
+                creatingObsticles={this.state.creatingObsticles}
             />
             <div className="path-canvas" onMouseUp={this.handleMouseUp}>
                 {grid.map((row: any, rowIndex: number) => {
