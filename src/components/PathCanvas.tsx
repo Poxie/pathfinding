@@ -1,7 +1,6 @@
 import React, { Component, createRef, useEffect, useRef, useState } from 'react';
 import { start } from 'repl';
 import { dijkstra, getShortestPath } from '../algorithms/dijkstra';
-import { useVisualizer } from '../contexts/VisualizerContext';
 import { Navbar } from './Navbar';
 import { Node } from './Node';
 
@@ -30,7 +29,7 @@ export class PathCanvas extends Component {
         finishNodeColumn: 55,
         isVisualized: false,
         active: false,
-        creatingObsticles: false
+        creatingObstacles: false
     }
 
     componentDidMount = () => {
@@ -278,9 +277,9 @@ export class PathCanvas extends Component {
         })
     }
 
-    setObsticles = (value: string) => {
+    setObstacles = (value: string) => {
         this.setState({
-            creatingObsticles: true
+            creatingObstacles: true
         })
         this.clearCanvas();
         if(value === 'random') {
@@ -300,7 +299,7 @@ export class PathCanvas extends Component {
                 const grid = this.getNewGridWithWalls(this.state.startNodeRow, this.state.startNodeColumn, walls, true);
                 this.setState({
                     grid,
-                    creatingObsticles: false
+                    creatingObstacles: false
                 })
             }, 5 * 800);
         }
@@ -314,8 +313,8 @@ export class PathCanvas extends Component {
                 onClick={this.visualize}
                 disabled={this.state.active}
                 clear={this.clearCanvas}
-                setObsticles={(value) => this.setObsticles(value)}
-                creatingObsticles={this.state.creatingObsticles}
+                setObstacles={(value) => this.setObstacles(value)}
+                creatingObstacles={this.state.creatingObstacles}
             />
             <div className="path-canvas flex column align-center" onMouseUp={this.handleMouseUp} onMouseLeave={this.handleMouseUp}>
                 {grid.map((row: any, rowIndex: number) => {

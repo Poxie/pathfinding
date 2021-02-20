@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useVisualizer } from '../contexts/VisualizerContext';
 
 interface Props {
     onClick: () => void;
     disabled: boolean;
     clear: () => void;
-    setObsticles: (value: string) => void;
-    creatingObsticles: boolean;
+    setObstacles: (value: string) => void;
+    creatingObstacles: boolean;
 }
-export const Navbar: React.FC<Props> = ({onClick, disabled, clear, setObsticles, creatingObsticles}) => {
-    const [openObsticles, setOpenObsticles] = useState(false);
+export const Navbar: React.FC<Props> = ({onClick, disabled, clear, setObstacles, creatingObstacles}) => {
+    const [openObstacles, setOpenObstacles] = useState(false);
 
-    const toggleObsticles = () => {
-        setOpenObsticles((previous) => !previous);
+    const toggleObstacles = () => {
+        setOpenObstacles((previous) => !previous);
     }
 
     useEffect(() => {
-        if(!openObsticles) return;
+        if(!openObstacles) return;
 
-        document.querySelector('body')?.addEventListener('click', toggleObsticles);
+        document.querySelector('body')?.addEventListener('click', toggleObstacles);
 
-        return () => document.querySelector('body')?.removeEventListener('click', toggleObsticles);
-    }, [openObsticles]);
+        return () => document.querySelector('body')?.removeEventListener('click', toggleObstacles);
+    }, [openObstacles]);
 
     let text;
-    if(creatingObsticles) {
+    if(creatingObstacles) {
         text = 'Creating obsticles...';
     } else if(disabled) {
         text = 'Visualizing...';
@@ -36,22 +35,22 @@ export const Navbar: React.FC<Props> = ({onClick, disabled, clear, setObsticles,
         <div className="navbar flex column align-center">
             <div className="navbar-content flex align-center justify-center">
                 <div className="obsticles">
-                    <span className="side-button" onClick={toggleObsticles}>
-                        Create Obsticles
+                    <span className="side-button" onClick={toggleObstacles}>
+                        Create Obstacles
                     </span>
-                    {openObsticles ? (
+                    {openObstacles ? (
                         <div className="obsticles-popup">
-                            <div className={`obsticles-option`} onClick={() => setObsticles('random')} style={{pointerEvents: disabled || creatingObsticles ? 'none' : 'all'}}>
-                                {disabled || creatingObsticles ? (
+                            <div className={`obsticles-option`} onClick={() => setObstacles('random')} style={{pointerEvents: disabled || creatingObstacles ? 'none' : 'all'}}>
+                                {disabled || creatingObstacles ? (
                                     text
                                 ) : (
-                                    'Random Obsticles'
+                                    'Random Obstacles'
                                 )}
                             </div>
                         </div>
                     ) : null}
                 </div>
-                <button onClick={onClick} className={disabled || creatingObsticles ? 'disabled' : ''} disabled={disabled}>
+                <button onClick={onClick} className={disabled || creatingObstacles ? 'disabled' : ''} disabled={disabled}>
                     {text}
                 </button>
                 <span className="side-button" onClick={clear}>
