@@ -316,7 +316,7 @@ export class PathCanvas extends Component {
                 setObsticles={(value) => this.setObsticles(value)}
                 creatingObsticles={this.state.creatingObsticles}
             />
-            <div className="path-canvas" onMouseUp={this.handleMouseUp}>
+            <div className="path-canvas flex column align-center" onMouseUp={this.handleMouseUp}>
                 {grid.map((row: any, rowIndex: number) => {
                     return(
                         <div className="row" key={rowIndex}>
