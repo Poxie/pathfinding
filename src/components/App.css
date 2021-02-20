@@ -1,0 +1,144 @@
+.navbar-content {
+    height: 80px;
+    background-color: #20232a;
+    color: #fff;
+    width: 100%;
+}
+.navbar button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    background-color: #438effbf;
+    padding: 10px 17px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: 500;
+    cursor: pointer;
+    width: 169px;
+    transition: background-color .4s;
+}
+.navbar button:hover {
+    background-color: #438effa9;
+}
+.navbar button.disabled {
+    background-color: #ff2300;
+}
+.navbar-bottom {
+    padding: 20px 0;
+}
+
+.flex {
+    display: flex;
+}
+.align-center {
+    align-items: center;
+}
+.justify-center {
+    justify-content: center;
+}
+.column {
+    flex-direction: column;
+}
+.fake-node {
+    width: 28px;
+    height: 28px;
+    background-size: 100% !important;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+.explanation>div {
+    margin-left: 20px;
+}
+
+.path-canvas {
+    height: 100%;
+    margin: 0 auto;
+    padding-left: 10px;
+}
+
+.app-view {
+    -webkit-user-drag: none;
+}
+.node {
+    width: 25px;
+    min-width: 25px;
+    height: 25px;
+    outline: 1px solid rgb(175, 216, 248);
+    -webkit-user-drag: none;
+}
+.start-node {
+    background-image: url('https://i.poxgur.com/HoeFFD.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: grab;
+}
+.finish-node {
+    background-color: #ff2300 !important;
+    cursor: grab;
+}
+.row {
+    display: flex;
+}
+.node.animate-visited {
+    background-color: blue;
+    animation: color 1.5s forwards;
+}
+.visited {
+    background-color: #438effbf;
+}
+@keyframes color {
+    0% {
+        transform: scale(.3);
+        background-color: rgba(146, 0, 190, 0.75);
+        border-radius: 100%;
+    }
+    50% {
+        background-color: rgba(173, 0, 189, 0.75);
+    }
+    75% {
+        transform: scale(1.2);
+        background-color: rgba(216, 5, 141, 0.75)
+    }
+    100% {
+        transform: scale(1.0);
+        background-color: #438effbf;
+    }
+}
+.node-path {
+    background-color: #fffe6a;
+    animation: none;
+}
+.node.animate-node-path {
+    background-color: #fffe6a;
+    animation: scale-up .6s forwards;
+}
+@keyframes scale-up {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.wall {
+    background-color: #20232a;
+    animation: wall .15s forwards;
+    outline: none;
+}
+@keyframes wall {
+    0% {
+        transform: scale(.95);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
