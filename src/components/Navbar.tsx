@@ -50,7 +50,7 @@ export const Navbar: React.FC<Props> = ({onClick, disabled, clear, setObstacles,
                         </div>
                     ) : null}
                 </div>
-                <button onClick={onClick} className={disabled || creatingObstacles ? 'disabled' : ''} disabled={disabled}>
+                <button onClick={onClick} className={disabled || creatingObstacles ? 'disabled' : ''} disabled={disabled || creatingObstacles}>
                     {text}
                 </button>
                 <span className="side-button" onClick={clear}>
